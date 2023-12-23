@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        azul: {
+                            fundo: '#222242',
+                            claro: '#3537AB;'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+</body>
+<div class="bg-azul-fundo">
+    <div class="p-2 lg:flex lg:flex-col lg:items-center">
+        <h1 class="text-white text-3xl m-2">
+            CALCULE SEU METABOLISMO BASAL
+        </h1>
+        <div class="w-full bg-azul-claro rounded-lg border-4 border-black p-4 lg:w-96">
+            <form action="" class="flex flex-col gap-1 text-white">
+                <label for="" class="">Nome</label>
+                <input type="text" id="nome" name="nome"
+                    class="border-2 border-black text-black p-1 focus:outline-none shadow-lg">
+                <div class="grid">
+                    <label for="" class="">Gênero</label>
+                    <div class="grid grid-cols-2">
+                        <label for="" class="">Mulher</label>
+                        <input type="radio" name="sexo" class="w-4" id="fem">
+                    </div>
+                    <div class="grid grid-cols-2">
+                        <label for="" class="">Homem</label>
+                        <input type="radio" name="sexo" class="w-4" id="masc">
+                    </div>
+                </div>
+                <label for="" class="">Idade</label>
+                <input type="text" id="idade" class="w-20 border-2 border-black text-black p-1 focus:outline-none">
+                <label for="" class="">Peso</label>
+                <input type="text" id="peso" class="w-20 border-2 border-black text-black p-1 focus:outline-none">
+                <label for="" class="">Altura (EM CENTÍMETROS)</label>
+                <input type="text" id="altura" class="w-20 border-2 border-black text-black p-1 focus:outline-none">
+                <div class="flex flex-col items-center gap-6">
+                    <button type="button" onclick="calcular()" class="bg-black p-4 rounded-lg px-8">
+                        CALCULAR
+                    </button>
+                    <p class="text-2xl">SEU METABOLISMO BASAL:</p>
+                    <p class="text-2xl " id="resultado"></p>
+                </div>
+            </form>
+        </div>
+        <div class="flex flex-col items-center text-white mt-4 gap-6 lg:flex lg:flex-row lg:justify-between">
+            <div
+                class="flex flex-col items-center w-11/12 text-xl bg-azul-claro rounded-lg p-4 justify-center lg:h-96 lg:justify-start lg:w-80">
+                <svg width="64" height="64" viewBox="0 0 64 69" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <rect width="64" height="69" fill="url(#pattern0)" />
+                    <defs>
+                        <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                            <use xlink:href="#image0_27_683" transform="matrix(0.0107812 0 0 0.01 -0.0390625 0)" />
+                        </pattern>
+                        <image id="image0_27_683" width="100" height="100"
+                            xlink:href="data:image/png;base64,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" />
+                    </defs>
+                </svg>
+                <h1 class="font-bold">
+                    O que é o metabolismo basal?
+                </h1>
+                <p class="">
+                    É a energia que o corpo usa para viver, mesmo em repouso.
+                </p>
+            </div>
+            <div
+                class="flex flex-col items-center w-11/12 text-xl bg-azul-claro rounded-lg p-4 justify-center lg:h-96 lg:justify-start lg:w-80">
+                <img src="https://img.icons8.com/?size=50&id=14736&format=png" alt="" class="w-16">
+                <h1 class="font-bold">
+                    Como o metabolismo basal varia entre as pessoas?
+                </h1>
+                <p class="">
+                    Depende de fatores como idade, peso, altura e sexo. Quem é maior e mais pesado gasta mais
+                    energia.
+                </p>
+            </div>
+            <div
+                class="flex flex-col items-center w-11/12 text-xl bg-azul-claro rounded-lg p-4 justify-center lg:h-96 lg:justify-start lg:w-80">
+                <img src="https://img.icons8.com/?size=24&id=86554&format=png" alt="" class="w-16">
+                <h1 class="font-bold">
+                    Por que o metabolismo basal é importante?
+                </h1>
+                <p class="">
+                    Ele representa a maior parte do gasto energético de uma pessoa. Ele afeta a quantidade de
+                    calorias que você precisa e pode mudar com a alimentação, o exercício, o estresse e o sono.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function calcular() {
+        var nome = document.getElementById('nome').value;
+        var idade = parseFloat(document.getElementById('idade').value);
+        var peso = parseFloat(document.getElementById('peso').value);
+        var altura = parseFloat(document.getElementById('altura').value);
+        var femSelecionado = document.getElementById('fem').checked;
+        var mascSelecionado = document.getElementById('masc').checked;
+
+        var resultadoElement = document.getElementById('resultado');
+
+        if (femSelecionado) {
+            var resultadoCalculado = 447.593 + (9.247 * peso) + (3.098 * altura) - (4.330 * idade);
+            var resultadoFormatado = resultadoCalculado.toFixed(0);
+            var resultadoFinal = "Seu metabolismo basal é: " + resultadoFormatado + " KCAL";
+
+            sessionStorage.setItem('resultado', resultadoFinal);
+            mostrarResultado();
+        } else {
+            if (nome.trim() !== "") {
+                var resultadoCalculado = 88.362 + (13.397 * peso) + (4.799 * altura) - (5.677 * idade);
+                var resultadoFormatado = resultadoCalculado.toFixed(0);
+                var resultadoFinal = nome + ", seu metabolismo basal é: " + resultadoFormatado + " KCAL";
+
+                sessionStorage.setItem('resultado', resultadoFinal);
+                mostrarResultado();
+            } else {
+                resultadoElement.textContent = "Por favor, insira seu nome.";
+            }
+        }
+    }
+
+    function mostrarResultado() {
+        var resultadoElement = document.getElementById('resultado');
+        var resultadoArmazenado = sessionStorage.getItem('resultado');
+
+        if (resultadoArmazenado) {
+            resultadoElement.textContent = resultadoArmazenado;
+        }
+    }
+
+
+</script>
+
+</html>
